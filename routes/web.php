@@ -47,7 +47,6 @@ Route::get(
 	)->name('contact-delete');
 
 
-Route::get('/contact/{some}', 'ContactController@some');
-Route::get('store', function () {
-    return view('store');
-})->name('store');
+Route::get('/category/{category}', 'MainController@category');
+
+Route::get('store', 'MainController@store')->name('store');

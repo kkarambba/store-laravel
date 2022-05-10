@@ -52,9 +52,4 @@ class ContactController extends Controller {
 		
 	}
 	
-	public function some($some){
-		return view('welcome');		
-	} 	
-	
-	 
 }
