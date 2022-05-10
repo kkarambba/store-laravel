@@ -50,6 +50,10 @@ class ContactController extends Controller {
 		
 		return redirect()->route('contact-data')->with('success', 'Сообщение удалено');
 		
+	}
+	
+	public function some($some){
+		return view('welcome');		
 	} 	
 	
 	 

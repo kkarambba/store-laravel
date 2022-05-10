@@ -47,3 +47,7 @@ Route::get(
 	)->name('contact-delete');
 
 
+Route::get('/contact/{some}', 'ContactController@some');
+Route::get('store', function () {
+    return view('store');
+})->name('store');
