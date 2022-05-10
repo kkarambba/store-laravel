@@ -11,7 +11,7 @@
         <a class="me-3 py-2 text-dark text-decoration-none" href="{{ route('contact') }}">Contact</a>
         <a class="me-3 py-2 text-dark text-decoration-none" href="{{ route('home') }}">Home</a>
         <a class="me-3 py-2 text-dark text-decoration-none" href="{{ route('contact-data') }}">Data</a>
-        <a class="me-3 py-2 text-dark text-decoration-none" href="{{ route('store') }}">Store</a>                
+        <a class="me-3 py-2 text-dark text-decoration-none" href="{{ route('categories') }}">Store</a>                
 
       </nav>
     </div>

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title-block')First Title @endsection 
+@section('title-block', 'Главная')
 
 @section('content')
         <div class="flex-center position-ref full-height">
