@@ -8,7 +8,8 @@
  	               	<div class="album py-5 bg-light">
     <div class="container">
 		<h2>{{ $category->description }}</h2>
-
+		 @include('inc.card')
+		 		 
     </div>
   </div>
         	
