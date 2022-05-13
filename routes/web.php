@@ -46,7 +46,7 @@ Route::get(
 	'ContactController@deleteMessage'
 	)->name('contact-delete');
 	
-
+Route::get('/order', 'MainController@order')->name('order');
 
 Route::get('/categories', 'MainController@categories')->name('categories');
 
@@ -54,7 +54,7 @@ Route::get('/{category}', 'MainController@category')->name('category');
 
 Route::get('/{category}/{product?}', 'MainController@product')->name('product');
 
-Route::get('/order', 'MainController@order')->name('order');
+
 
 
 

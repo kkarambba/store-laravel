@@ -5,6 +5,8 @@
 @section('content')
  	               	<h1>Оформление заказа</h1>
  	               	
+
+ 	               	
  	            <div class="container">
   <main>
     <div class="py-5 text-center">

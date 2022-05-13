@@ -12,7 +12,12 @@
 		<p style="color: red;font-size:15pt;">{{ $category->description }}</p>
 
     </div>	
-	@endforeach 	               	
+	@endforeach 
+	
+	 	               	@foreach($products as $product)
+ 	               		@include('inc.card', compact($product))
+ 	               	
+ 	               	@endforeach	               	
 
   </div>
         	
