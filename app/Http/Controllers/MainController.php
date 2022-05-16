@@ -25,11 +25,4 @@ class MainController extends Controller
 		return view('product', ['product' => $product]);
 	}
 	
-    public function order(){
-		return view('order', compact('products'));
-	}	
-	
-
-
-	
 }

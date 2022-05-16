@@ -9,9 +9,12 @@
               <p class="card-text">{{ $product ->code }}</p>                            
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                <a href="{{ route('product', [$product->category->code, $product->code])}}">Детальнее</a>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Оформить</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Детальнее</button>
+                <form method="POST" action="{{ route('basketAdd', $product) }}"> 
+                
+                {!! csrf_field() !!}             
+                  <button type="submit" class="btn btn-sm btn-outline-secondary">Оформить</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{{ route('product', [$product->category->code, $product->code])}}">Детальнее</a></button></form>
+				 
                 </div>
              
                 

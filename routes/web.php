@@ -46,13 +46,19 @@ Route::get(
 	'ContactController@deleteMessage'
 	)->name('contact-delete');
 	
-Route::get('/order', 'MainController@order')->name('order');
+Route::get('/order', 'BasketController@basketPlace')->name('order');
+
+Route::get('/basket/', 'BasketController@basket')->name('basket-place');
+
+Route::post('/basket/add/{id}', 'BasketController@basketAdd')->name('basketAdd');
+Route::post('/basket/remove/{id}', 'BasketController@basketRemove')->name('basketRemove');
 
 Route::get('/categories', 'MainController@categories')->name('categories');
 
 Route::get('/{category}', 'MainController@category')->name('category');
 
 Route::get('/{category}/{product?}', 'MainController@product')->name('product');
+
 
 
 

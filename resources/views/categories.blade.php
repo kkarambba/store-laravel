@@ -4,7 +4,7 @@
 
 @section('content')
  	               	<h1>Категории</h1>
- 	               	
+ 	               	<h2><a href="{{ route('basket-place') }}">Корзина</a></h2>
  	               	<div class="album py-5 bg-light">
 	@foreach($categories as $category)
     <div class="container">
