@@ -48,7 +48,7 @@ Route::get(
 	
 Route::get('/order', 'BasketController@basketPlace')->name('order');
 
-Route::get('/basket/', 'BasketController@basket')->name('basket-place');
+Route::get('/basket/', 'BasketController@basket')->name('basket');
 
 Route::post('/basket/add/{id}', 'BasketController@basketAdd')->name('basketAdd');
 Route::post('/basket/remove/{id}', 'BasketController@basketRemove')->name('basketRemove');

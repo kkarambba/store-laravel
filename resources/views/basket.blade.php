@@ -60,10 +60,9 @@
           </li>
         </ul>
 
-        <form class="card p-2">
+        <form class="card p-2" >
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="Promo code">
-            <button type="submit" class="btn btn-secondary">Redeem</button>
+            <a href="{{ route('order')}}" ><span style="color:#000">Оформить</span>></a>
           </div>
         </form>
       </div>
@@ -73,14 +72,6 @@
     </div>
   </main>
 
-  <footer class="my-5 pt-5 text-muted text-center text-small">
-    <p class="mb-1">© 2017–2021 Company Name</p>
-    <ul class="list-inline">
-      <li class="list-inline-item"><a href="#">Privacy</a></li>
-      <li class="list-inline-item"><a href="#">Terms</a></li>
-      <li class="list-inline-item"><a href="#">Support</a></li>
-    </ul>
-  </footer>
 </div>
         	
      	

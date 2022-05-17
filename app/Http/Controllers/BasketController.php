@@ -17,7 +17,14 @@ class BasketController extends Controller
 	}
 
     public function basketPlace(){
-		return view('order');
+    	$orderId = session('orderId');
+    		if(is_null($orderId)){
+				return redirect()->route('home');
+			}
+			
+			
+		$order = Order::find($orderId);    	
+		return view('order', compact('order'));
 	}
 	
     public function basketAdd($productId){
@@ -39,7 +46,7 @@ class BasketController extends Controller
 				$order ->products()->attach($productId);
 		  }		
 		
-		return redirect() ->route('basket-place');
+		return redirect() ->route('basket');
 		
 	}
 	
@@ -47,7 +54,7 @@ class BasketController extends Controller
 		$orderId = session('orderId');
 		if (is_null($orderId))
 		{
-			return redirect() ->route('basket-place');		
+			return redirect() ->route('basket');		
 		}
 		
 		$order = Order::find($orderId);
@@ -67,6 +74,6 @@ class BasketController extends Controller
 				}					
 		}	
 		
-		return redirect() ->route('basket-place');
+		return redirect() ->route('basket');
 	}	
 }

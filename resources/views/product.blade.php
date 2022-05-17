@@ -3,7 +3,7 @@
 @section('title-block')Магазин @endsection 
 
 @section('content')
- 	               	<h1>{{ $product }}s</h1>
+ 	               	<h1>{{ $product }}</h1>
  	               	
  	               	<div class="album py-5 bg-light">
     <div class="container">

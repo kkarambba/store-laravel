@@ -9,11 +9,7 @@
  	               	
  	            <div class="container">
   <main>
-    <div class="py-5 text-center">
-      <img class="d-block mx-auto mb-4" src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
-      <h2>Checkout form</h2>
-      <p class="lead">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
-    </div>
+
 
     <div class="row g-5">
       <div class="col-md-5 col-lg-4 order-md-last">
@@ -51,8 +47,8 @@
             <span class="text-success">−$5</span>
           </li>
           <li class="list-group-item d-flex justify-content-between">
-            <span>Total (USD)</span>
-            <strong>$20</strong>
+            <span>Total </span>
+            <strong>{{ $order->getFullPrice() }}</strong>
           </li>
         </ul>
 
@@ -85,7 +81,7 @@
               </div>
             </div>
 
-            <div class="col-12">
+          <!--  <div class="col-12">
               <label for="username" class="form-label">Username</label>
               <div class="input-group has-validation">
                 <span class="input-group-text">@</span>
@@ -145,7 +141,7 @@
               <div class="invalid-feedback">
                 Zip code required.
               </div>
-            </div>
+            </div> 
           </div>
 
           <hr class="my-4">
@@ -213,10 +209,10 @@
               </div>
             </div>
           </div>
-
+-->
           <hr class="my-4">
 
-          <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
+          <button class="w-100 btn btn-primary btn-lg" type="submit">checkout</button>
         </form>
       </div>
     </div>
