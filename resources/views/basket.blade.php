@@ -16,7 +16,7 @@
     </div>
 
     <div class="row g-5" style="font-size: 16pt;">
-      <div class="col-md-5 col-lg-4 order-md-last">
+      <div class="col-md-2 col-lg-8 order-md-last">
         <h4 class="d-flex justify-content-between align-items-center mb-3">
           <span class="text-primary">Your cart</span>
           <span class="badge bg-primary rounded-pill">3</span>
@@ -29,7 +29,7 @@
               
               
               <div class="btn-group">
-              	Кол-во: 1 
+              	Кол-во: {{ $product->pivot->count }} 
               	
               	
               
@@ -49,13 +49,14 @@
               <small class="text-muted">{{ $product->description }}</small>
             </div>
             <span class="text-muted">{{ $product->price }}</span>
+             <span class="text-muted">Сумма: {{ $product->getPriceForCount() }}</span>      
           </li>        
         @endforeach
 
         
           <li class="list-group-item d-flex justify-content-between">
-            <span>Total (USD)</span>
-            <strong>$20</strong>
+            <span>Total</span>
+            <strong>{{ $order->getFullPrice() }}</strong>
           </li>
         </ul>
 
