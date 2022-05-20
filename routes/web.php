@@ -10,7 +10,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes([
+	'password.reset' => false,
 
+]);
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
@@ -45,13 +48,17 @@ Route::get(
 	'/contact/all/{id}/delete',
 	'ContactController@deleteMessage'
 	)->name('contact-delete');
+
+
+
+Route::get('/basket/', 'BasketController@basket')->name('basket');
 	
 Route::get('/order', 'BasketController@basketPlace')->name('order');
 
-Route::get('/basket/', 'BasketController@basket')->name('basket');
-
 Route::post('/basket/add/{id}', 'BasketController@basketAdd')->name('basketAdd');
 Route::post('/basket/remove/{id}', 'BasketController@basketRemove')->name('basketRemove');
+
+Route::post('/order', 'BasketController@basketСonfirm')->name('basket-confirm');
 
 Route::get('/categories', 'MainController@categories')->name('categories');
 

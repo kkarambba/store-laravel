@@ -15,7 +15,7 @@
 	@endforeach 
 	
 	 	               	@foreach($products as $product)
- 	               		@include('inc.card', compact($product))
+ 	               		@include('layouts.card', compact($product))
  	               	
  	               	@endforeach	               	
 

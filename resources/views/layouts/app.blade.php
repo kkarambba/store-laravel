@@ -75,15 +75,33 @@
  			@include('inc.hero')
  		@endif
  		
- 		
-   		
-		   
+@if(session()->has('success'))
+<section>		
+		<div class="container">
+			<div class="row">
+				<p class="alert alert-success">{{ session()->get('success')}}</p>
+			</div>
+			
+		</div>   		
+</section>
+@endif
+@if(session()->has('warning'))
+<section>		
+		<div class="container">
+			<div class="row">
+				<p class="alert alert-warning">{{ session()->get('warning')}}</p>
+			</div>
+			
+		</div>   		
+</section>
+@endif 	 		
+ 		   
     	<div class="container mt-5">
     	
     	@include('inc.messages')
     		<div class="row">
     			<div class="col-8">
-        			@yield('content')     				
+        				@yield('content')     				
     			</div>
     			<div class="col-4">
         			@include('inc.aside')     				

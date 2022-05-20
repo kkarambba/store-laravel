@@ -9,7 +9,7 @@
     <div class="container">
 		<h2>{{ $category->description }}</h2>
 		 	 	               	@foreach($category->products as $product)
- 	               		@include('inc.card', compact($product))
+ 	               		@include('layouts.card', compact($product))
  	               	
  	               	@endforeach	
 		 		 

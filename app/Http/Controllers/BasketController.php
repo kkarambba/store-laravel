@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Order;
+use App\Models\Product;
 use Illuminate\Http\Request;
+
 
 class BasketController extends Controller
 {
@@ -20,11 +23,30 @@ class BasketController extends Controller
     	$orderId = session('orderId');
     		if(is_null($orderId)){
 				return redirect()->route('home');
-			}
-			
+			}		
 			
 		$order = Order::find($orderId);    	
 		return view('order', compact('order'));
+	}
+	
+	public function basketСonfirm(Request $request)
+	{
+		$orderId = session('orderId');
+    		if(is_null($orderId)){
+				return redirect()->route('home');
+			}		
+		
+		$order = Order::find($orderId);
+		$success = $order -> saveOrder($request->name, $request->phone);
+				
+		if($success)
+		{	
+			session()->flash('success','Заказ принят');
+		} else{
+			session()->flash('warning','Какая-то ошибка');
+		}
+		
+		return redirect()->route('home');
 	}
 	
     public function basketAdd($productId){
@@ -44,7 +66,11 @@ class BasketController extends Controller
 			$pivotRow->update();					
 		} else {
 				$order ->products()->attach($productId);
-		  }		
+		  }
+		  
+		$product = Product::find($productId);
+		  		
+		$success = session()->flash('success','Добавлен в корзину ' . $product->name);
 		
 		return redirect() ->route('basket');
 		
@@ -72,8 +98,12 @@ class BasketController extends Controller
 					$pivotRow->count--;
 					$pivotRow->update();
 				}					
-		}	
-		
+		}
+			
+		$product = Product::find($productId);
+		  		
+		$success = session()->flash('warning','Убран из корзины ' . $product->name);
+				
 		return redirect() ->route('basket');
 	}	
 }
