@@ -7,11 +7,20 @@
       </a>
 
       <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+        <a class="me-3 py-2 text-dark text-decoration-none" href="{{ route('index') }}">Home</a>      
         <a class="me-3 py-2 text-dark text-decoration-none" href="{{ route('about') }}">About</a>
         <a class="me-3 py-2 text-dark text-decoration-none" href="{{ route('contact') }}">Contact</a>
         <a class="me-3 py-2 text-dark text-decoration-none" href="{{ route('home') }}">Home</a>
         <a class="me-3 py-2 text-dark text-decoration-none" href="{{ route('contact-data') }}">Data</a>
         <a class="me-3 py-2 text-dark text-decoration-none" href="{{ route('categories') }}">Store</a>                
 
+    @guest
+	<a class="me-3 py-2 text-dark text-decoration-none" href="{{ route('register') }}">Register</a>
+	<a class="me-3 py-2 text-dark text-decoration-none" href="{{ route('login') }}">Sign in</a>        
+    @endguest    
+
+	@auth
+	<a class="me-3 py-2 text-dark text-decoration-none" href="{{ route('get-logout') }}">Logout</a>
+	@endauth      
       </nav>
     </div>

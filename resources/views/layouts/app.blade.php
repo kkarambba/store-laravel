@@ -100,12 +100,12 @@
     	
     	@include('inc.messages')
     		<div class="row">
-    			<div class="col-8">
+    			<div class="col-4">
         				@yield('content')     				
     			</div>
-    			<div class="col-4">
+  <!--  			<div class="col-4">
         			@include('inc.aside')     				
-    			</div>     			    		
+    			</div>     	-->		    		
     		</div>
 
        

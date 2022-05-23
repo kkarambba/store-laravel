@@ -10,13 +10,21 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Auth::routes([
-	'password.reset' => false,
+Auth::routes();
 
-]);
+Route::get('/logout', 'Auth\LoginController@logout')->name('get-logout');
+
+Route::group([
+	'middleware' => 'auth',
+	'namespace' => 'Admin'
+	], function(){
+		Route::get('/orders', 'OrderController@index')->name('home');
+	});
+
+
 Route::get('/', function () {
     return view('welcome');
-})->name('home');
+})->name('index');
 
 Route::get('/about', function () {
     return view('about');
