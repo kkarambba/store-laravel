@@ -11,7 +11,10 @@ class Product extends Model
 		return Category::where('id', $this->category_id)->first();		
 		
 	}
+	
 */	
+	protected $fillable = ['category_id','code','name','description','image','price'];
+	
 	public function category(){
 		return $this->belongsTo(Category::class);
 	}
