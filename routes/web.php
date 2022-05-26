@@ -16,10 +16,15 @@ Route::get('/logout', 'Auth\LoginController@logout')->name('get-logout');
 
 Route::group([
 	'middleware' => 'auth',
-	'namespace' => 'Admin'
+	'namespace' => 'Admin',
+	'prefix' => 'admin',
 	], function(){
-		Route::get('/orders', 'OrderController@index')->name('home');
-	});
+			Route::group(['middleware' => 'is_admin'], function()
+			{
+				Route::get('/orders', 'OrderController@index')->name('home');
+			});
+			Route::resource('/categories', 'CategoryController');	 
+	   });
 
 
 Route::get('/', function () {
@@ -57,16 +62,19 @@ Route::get(
 	'ContactController@deleteMessage'
 	)->name('contact-delete');
 
-
-
-Route::get('/basket/', 'BasketController@basket')->name('basket');
-	
-Route::get('/order', 'BasketController@basketPlace')->name('order');
-
 Route::post('/basket/add/{id}', 'BasketController@basketAdd')->name('basketAdd');
-Route::post('/basket/remove/{id}', 'BasketController@basketRemove')->name('basketRemove');
 
-Route::post('/order', 'BasketController@basketСonfirm')->name('basket-confirm');
+Route::group([
+	'middleware' => 'basket_not_empty'], function(){
+			Route::get('/basket/', 'BasketController@basket')->name('basket');	
+			Route::get('/order', 'BasketController@basketPlace')->name('order');
+			Route::post('/basket/remove/{id}', 'BasketController@basketRemove')->name('basketRemove');
+			Route::post('/order', 'BasketController@basketСonfirm')->name('basket-confirm');
+		
+		}); 
+
+
+
 
 Route::get('/categories', 'MainController@categories')->name('categories');
 

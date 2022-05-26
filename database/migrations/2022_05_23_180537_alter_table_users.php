@@ -13,8 +13,8 @@ class AlterTableUsers extends Migration
      */
     public function up()
     {
-        Schema::table('order_product', function (Blueprint $table) {
-            $table->integer('count')->default(1)->after('product_id');                  
+        Schema::table('users', function (Blueprint $table) {
+            $table->tinyInteger('is_admin')->default(0);                  
         });
     }
 
@@ -25,6 +25,9 @@ class AlterTableUsers extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('is_admin');                  
+        });        //
     }
 }
+ 

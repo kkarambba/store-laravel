@@ -57,6 +57,8 @@
           <li class="list-group-item d-flex justify-content-between">
             <span>Total</span>
             <strong>{{ $order->getFullPrice() }}</strong>
+            
+             
           </li>
         </ul>
 

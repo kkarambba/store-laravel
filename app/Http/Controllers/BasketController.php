@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 
 class BasketController extends Controller
@@ -68,14 +69,20 @@ class BasketController extends Controller
 				$order ->products()->attach($productId);
 		  }
 		  
-		$product = Product::find($productId);
-		  		
+		if(Auth::check())
+		{
+			$order->user_id = Auth::id();
+			$order->save();
+		}
+		  
+		$product = Product::find($productId);		
 		$success = session()->flash('success','Добавлен в корзину ' . $product->name);
 		
 		return redirect() ->route('basket');
 		
 	}
-	
+
+
 	public function basketRemove($productId){
 		$orderId = session('orderId');
 		if (is_null($orderId))
