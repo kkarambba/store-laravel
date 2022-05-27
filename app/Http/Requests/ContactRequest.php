@@ -28,10 +28,10 @@ class ContactRequest extends FormRequest
         ];
     }
     
-    	public function attributes() {
-		return [
-			'name' => 'Имя'
-		];
+	public function attributes() {
+	return [
+		'name' => 'Имя'
+	];
 	}
 	
 	public function messages() {

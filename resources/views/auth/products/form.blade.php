@@ -24,7 +24,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4">
-<form method="POST" 
+<form enctype="multipart/form-data"  method="POST" 
 	@isset($product)
 		action="{{ route('products.update', $product ) }}"	
 	@else
@@ -38,16 +38,16 @@
 
     <div class="form-group">
     <label for="code">Code</label>
-    <input class="form-control" id="code" name="code" value="@isset($product){{ $product->code }}@endisset"></input>
+    <input class="form-control" id="code" name="code" value="{{ old('code', isset($product) ? $product->code : NULL) }}"></input>
   </div>
 
     <div class="form-group">
     <label for="name">Name</label>
-    <input class="form-control" id="name" name="name" value="@isset($product){{ $product->name }}@endisset"></input>
+    <input class="form-control" id="name" name="name" value="{{ old('name', isset($product) ? $product->name : NULL) }}"></input>
   </div>
     <div class="form-group">
     <label for="price">Price</label>
-    <input class="form-control" id="price" name="price" value="@isset($product){{ $product->price }}@endisset"></input>
+    <input class="form-control" id="price" name="price" value="{{ old('price', isset($product) ? $product->price : NULL) }}"></input>
   </div>
       <div class="form-group">
     <label for="category_id">Category</label>
@@ -70,9 +70,12 @@
 
   <div class="form-group">
     <label for="description">Description</label>
-    <textarea class="form-control" id="description" name="description" >@isset($product){{ $product->description }}@endisset</textarea>
+    <textarea class="form-control" id="description" name="description" >{{ old('description', isset($product) ? $product->description : NULL) }}</textarea>
   </div>
-
+  <div class="mb-3">
+  <label for="image" class="form-label">Product image</label>
+  <input class="form-control" type="file" id="image" name="image">
+</div>
 
 
   <button type="submit" class="btn btn-primary">Submit</button>

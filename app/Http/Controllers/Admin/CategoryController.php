@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\CategoryRequest;
 
 class CategoryController extends Controller
 {
@@ -35,10 +37,16 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
-        Category::create($request->all());
-        return redirect()-> route('categories.index');
+        $params = $request->all();
+        unset($params['image']);
+        if ($request->image != NULL) {
+            $params['image'] = $request->file('image')->store('categories');
+        }
+
+        Category::create($params);
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -70,9 +78,16 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(CategoryRequest $request, Category $category)
     {
-    	$category->update($request->all());
+        $params = $request->all();
+        unset($params['image']);
+        if ($request->image != NULL) {
+        	Storage::delete($category->image);
+            $params['image'] = $request->file('image')->store('categories');
+        }
+             	
+    	$category->update($params);
         return redirect()-> route('categories.index');
     }
 
@@ -84,6 +99,10 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+    	
+        if ($category->image != NULL) {
+        	Storage::delete($category->image);
+        }    	
         $category->delete();
         return redirect()-> route('categories.index');
     }

@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use App\Models\Order;
+use App\Models\Products;
 class BasketIsNotEmpty
 {
     /**
@@ -19,16 +20,15 @@ class BasketIsNotEmpty
 		
 		
 		if (!is_null($orderId)){
-			$order = Order::findOrFail($orderId);
-	/*		
-			dd($order->pruducts);
-			if($order->pruducts->count() == 0){
-				session()->flash('warning', 'Cart is empty');
-				return redirect()->route('index');
-			} */
+			$order = Order::findOrFail($orderId);			
+			
+			if($order->products->count() > 0){
+				return $next($request);
+			} 
 			  
 		}  
 		  	
-        return $next($request);
+        session()->flash('warning', 'Cart is empty');
+		return redirect()->route('index');
     }
 }

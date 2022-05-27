@@ -5,7 +5,7 @@
 @section('content')
                 	<h1>{{ $product->name }}</h1>
 <div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="..." alt="Card image cap">
+  <img class="card-img-top" src="{{ Storage::url($product->image) }}" alt="Card image cap">
   <div class="card-body">
 
     <p class="card-text">Description - <b>{{ $product->description }}</b></p>

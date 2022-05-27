@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\ProductRequest;
 
 
 class ProductController extends Controller
@@ -38,9 +40,16 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-    	Product::create($request->all());
+        $params = $request->all();
+        unset($params['image']);
+        if ($request->image != NULL) {
+            $params['image'] = $request->file('image')->store('products');
+        }
+  		    
+	    	
+        Product::create($params);
         return redirect()-> route('products.index');
     }
 
@@ -53,7 +62,7 @@ class ProductController extends Controller
     public function show(Product $product)
     {
     	    	
-        return view('products.show', compact('product'));        
+        return view('auth.products.show', compact('product'));        
     }
 
     /**
@@ -75,9 +84,16 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(ProductRequest $request, Product $product)
     {
-    	$product->update($request->all());
+        $params = $request->all();
+        unset($params['image']);
+        if ($request->image != NULL) {
+        	Storage::delete($product->image);
+            $params['image'] = $request->file('image')->store('products');
+        }
+    	
+    	$product->update($params);
         return redirect()-> route('products.index');
     }
 
@@ -89,6 +105,9 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
+        if ($product->image != NULL) {
+        	Storage::delete($product->image);
+        }     	
         $product->delete();
         return redirect()-> route('products.index');
     }
