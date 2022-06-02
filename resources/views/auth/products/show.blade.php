@@ -5,7 +5,27 @@
 @section('content')
                 	<h1>{{ $product->name }}</h1>
 <div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="{{ Storage::url($product->image) }}" alt="Card image cap">
+
+          <div class="thumbnail">
+          <div class=labels>
+          	@if($product->isNew())
+          		<span class="badge badge-success">New</span>
+          	@endif          	
+          	@if($product->isHit())
+          		<span class="badge badge-warning">Hit</span>
+          	@endif          	
+          	@if($product->isRecommend())
+          		<span class="badge badge-danger">Recommend</span>
+          	@endif
+          	
+          	
+          	
+          	
+          </div>
+          	<img  src="{{ Storage::url($product->image) }}" width="250px;">
+          	
+          </div>
+
   <div class="card-body">
 
     <p class="card-text">Description - <b>{{ $product->description }}</b></p>

@@ -53,6 +53,9 @@
         <li class="nav-item">
            <a class="nav-link" @routeactive('home') href="{{ route('home') }}">Orders</a>
         </li>
+        <li class="nav-item">
+           <a class="nav-link" @routeactive('cacheClear') href="{{ route('cacheClear') }}">Clear cache</a>
+        </li>        
         @endif 
         
         @auth

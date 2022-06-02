@@ -3,7 +3,8 @@
 @section('title-block'){{ $category->name }}@endsection 
 
 @section('content')
- 	               	<h1>{{ $category->name }} {{ $category->products->count() }}</h1>
+ 	               	<h1>{{ $category->name }}</h1>
+ 	               	<p>Products: <b>{{ $category->products->count() }} psc</b></p>
  	               	
  	               	<div class="album py-5 bg-light">
     <div class="container">

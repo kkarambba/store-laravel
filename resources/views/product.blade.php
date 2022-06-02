@@ -1,22 +1,43 @@
 @extends('layouts.app')
 
-@section('title-block')Магазин @endsection 
+@section('title-block') {{ $product->name }} @endsection 
 
 @section('content')
- 	               	<h1>{{ $product }}</h1>
- 	               	
- 	               	<div class="album py-5 bg-light">
-    <div class="container">
+                	<h1>{{ $product->name }}</h1>
+<div class="card" style="width: 18rem;">
 
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+          <div class="thumbnail">
+          <div class=labels>
+          	@if($product->isNew())
+          		<span class="badge badge-success">New</span>
+          	@endif          	
+          	@if($product->isHit())
+          		<span class="badge badge-warning">Hit</span>
+          	@endif          	
+          	@if($product->isRecommend())
+          		<span class="badge badge-danger">Recommend</span>
+          	@endif
+          	
+          	
+          	
+          	
+          </div>
+          	<img  src="{{ Storage::url($product->image) }}" width="250px;">
+          	
+          </div>
 
+  <div class="card-body">
 
-
-      </div>
-    </div>
+    <p class="card-text">Description - <b>{{ $product->description }}</b></p>
   </div>
-        	
-     	
-        	
+  <ul class="list-group list-group-flush">
+   <li class="list-group-item">Code - <b>{{ $product->code }}</b></li>
+    <li class="list-group-item">ID - <b>{{ $product->id }}</b></li>
+     <li class="list-group-item">Category - <b>{{ $category->name }}</b></li>   
+
+   
+  </ul>
+
+</div>
 @endsection
 

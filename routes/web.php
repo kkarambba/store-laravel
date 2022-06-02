@@ -10,7 +10,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Auth::routes();
+
+Route::get('reset', 'ResetController@reset')->name('reset_db');
 
 Route::get('/logout', 'Auth\LoginController@logout')->name('get-logout');
 
@@ -37,6 +40,14 @@ Route::middleware(['auth'])->group(function(){
 				Route::get('/orders/{order}', 'OrderController@show')->name('orders-show');
 				Route::resource('/categories', 'CategoryController');
 				Route::resource('/products', 'ProductController');
+				
+				Route::get('/clear', function() {
+    				Artisan::call('cache:clear');
+    				Artisan::call('config:cache');
+    				Artisan::call('view:clear');
+					Artisan::call('route:clear');
+    				return "Cache cleared";
+				})->name('cacheClear');
 			});
 	 
 	   });	

@@ -13,7 +13,7 @@ class Product extends Model
 	}
 	
 */	
-	protected $fillable = ['category_id','code','name','description','image','price'];
+	protected $fillable = ['category_id','code','name','description','image','price','hit','new','recommend'];
 	
 	public function category(){
 		return $this->belongsTo(Category::class);
@@ -26,4 +26,34 @@ class Product extends Model
 		return $this->price;
 				
 	}
+	
+	public function setNewAttribute($valute){
+		$this->attributes['new'] = $valute === 'on' ? 1 : 0;
+		
+	}
+
+	public function setHitAttribute($valute){
+		$this->attributes['hit'] = $valute === 'on' ? 1 : 0;
+		
+	}
+	
+	public function setRecommendAttribute($valute){
+		$this->attributes['recommend'] = $valute === 'on' ? 1 : 0;
+		
+	}	
+	
+	public function isHit(){
+		return $this->hit === 1;
+		
+	}
+		
+	public function isNew(){
+		return $this->new === 1;
+	}	
+	
+	public function isRecommend(){
+		return $this->recommend === 1;
+	}
+	
+	
 }
