@@ -7,18 +7,22 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductsFilerRequest;
 use Illuminate\Support\Facades\Log;
+use Debugbar\Debugbar;
 
 class MainController extends Controller
 {
     public function categories(ProductsFilerRequest $request){
     	
     	//loggin IP adress
-    	Log::info($request->ip());
+    	//Log::info($request->ip());
+    	
+    	//Debugbar
+    	//app('debugbar')->info($request);
     	
     	
     	$categories = Category::get();
     	
-    	$productsQuery = Product::query();
+    	$productsQuery = Product::with('category');
     	 		 	
     	if($request->price_from != NULL){
     		
@@ -32,7 +36,7 @@ class MainController extends Controller
 		
 		foreach(['hit', 'recommend', 'new'] as $field){
 			if($request->has($field)){
-				$productsQuery->where($field, 1);
+				$productsQuery->$field();
 			}			
 		}		
 				

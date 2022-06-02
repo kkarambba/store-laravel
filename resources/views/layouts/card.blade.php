@@ -38,7 +38,10 @@
                 
                 {!! csrf_field() !!}             
                   <button type="submit" class="btn btn-sm btn-outline-secondary">Order</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{{ route('product', [$product->category->code, $product->code])}}">Details</a></button></form>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">
+                  	<a href="{{ route('product', [isset($category) ? $category->code : $product->category->code, $product->code]) }}">Details</a>
+                  </button>
+                </form>
 				 
                 </div>
              

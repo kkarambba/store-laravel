@@ -47,7 +47,9 @@ class BasketController extends Controller
 			session()->flash('warning','Какая-то ошибка');
 		}
 		
-		return redirect()->route('home');
+		Order::eraseOrderSum();
+		
+		return redirect()->route('index');
 	}
 	
     public function basketAdd($productId){
@@ -75,7 +77,10 @@ class BasketController extends Controller
 			$order->save();
 		}
 		  
-		$product = Product::find($productId);		
+		$product = Product::find($productId);
+		
+		Order::changeFullSum($product->price);	
+			
 		$success = session()->flash('success','Добавлен в корзину ' . $product->name);
 		
 		return redirect() ->route('basket');
@@ -108,6 +113,8 @@ class BasketController extends Controller
 		}
 			
 		$product = Product::find($productId);
+		
+		Order::changeFullSum(-$product->price);
 		  		
 		$success = session()->flash('warning','Убран из корзины ' . $product->name);
 				

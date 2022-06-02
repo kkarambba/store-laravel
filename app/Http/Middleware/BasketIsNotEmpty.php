@@ -16,17 +16,18 @@ class BasketIsNotEmpty
      */
     public function handle($request, Closure $next)
     {
+    	//Session flush 	
+    	//session()->flush();
+    	//die();
 		$orderId = session('orderId');
 		
 		
-		if (!is_null($orderId)){
-			$order = Order::findOrFail($orderId);			
-			
-			if($order->products->count() > 0){
+		if (!is_null($orderId) && Order::getFullSum() > 0){
+		
 				return $next($request);
 			} 
 			  
-		}  
+		  
 		  	
         session()->flash('warning', 'Cart is empty');
 		return redirect()->route('index');

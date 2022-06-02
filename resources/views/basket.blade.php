@@ -18,7 +18,7 @@
           <span class="badge bg-primary rounded-pill">3</span>
         </h4>
         <ul class="list-group mb-3" >
-        @foreach($order->products as $product)
+        @foreach($order->products()->with('category')->get() as $product)
           <li class="list-group-item d-flex justify-content-between lh-sm">
             <div>
               <p class="my-0"><a href="{{ route('product', [$product->category->code, $product->code]) }}">{{ $product->name }}</a></p> 
@@ -52,7 +52,7 @@
         
           <li class="list-group-item d-flex justify-content-between">
             <span>Total</span>
-            <strong>{{ $order->getFullPrice() }}</strong>
+            <strong>{{ $order->getFullSum() }}</strong>
             
              
           </li>
