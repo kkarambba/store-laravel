@@ -17,7 +17,8 @@
       <th scope="col">URL</th>
       <th scope="col">Name</th>
       <th scope="col">Category</th>
-      <th scope="col">Price</th>            
+      <th scope="col">Price</th>      
+      <th scope="col">Count</th>            
       <th scope="col">Action</th>
    
     </tr>
@@ -29,8 +30,9 @@
       <td>{{ $product->code }}</td>
       <td>{{ $product->name }}</td>
       <td>{{ $product->category->name }}</td>     
-      <td>{{ $product->price }}</td>      
-      
+      <td>{{ $product->price }}</td>       
+      <td>{{ $product->count }}</td>      
+	     
       <td>
       	<form method="POST" action="{{ route('products.destroy', $product) }}">
       		{!! csrf_field() !!}

@@ -60,7 +60,7 @@
 
         <form class="card p-2" >
           <div class="input-group">
-            <a href="{{ route('order')}}" ><span style="color:#000">Оформить</span>></a>
+            <a href="{{ route('order')}}" ><span style="color:#000">Оформить</span></a>
           </div>
         </form>
       </div>

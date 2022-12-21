@@ -10,27 +10,24 @@
             <div class="justify-content-center">
                 <div class="panel">
                     <h1>Заказ № {{ $order->id }}</h1>
-                    <p>Заказчик: <b>{{ $order->name }}</b></p>
+                    <p>Заказчик: <b>{{ $order->name }} </b></p>
                     <p>Номер телефона: <b>{{ $order->phone }}</b></p>
                     <table class="table table-striped">
                         <thead>
                         <tr>
-                            <th>Название</th>
-                            <th>Кол-во</th>
-                            <th>Цена</th>
-                            <th>Стоимость</th>
+                            <th>Name</th>
+                            <th>Count</th>
+                            <th>Price</th>
+                            <th>Sum</th>
                         </tr>
                         </thead>
                         <tbody>
-                      	@foreach($order->products as $product)
+                      	@foreach($products as $product)
+                      	
                             <tr>
-                                <td>
-                                    <a href="">
-                                        <img height="56px" src="{{ Storage::url($product->image) }}">
-                                        {{ $product->name }}
-                                             
-                                        
-                                    </a>
+                                <td>                                    
+                                        <a href="{{ route('product', [$product->category->code, $product->code]) }}"><img height="56px" src="{{ Storage::url($product->image) }}"></a>
+                                        <a href="{{ route('product', [$product->category->code, $product->code]) }}">{{ $product->name }}</a> 
                                 </td>
                                 <td><span class="badge"></span></td>
                                 <td>{{ $product->price }}</td>
@@ -40,7 +37,7 @@
 
                       
                         <tr>
-                            <td colspan="3">Общая стоимость:</td>
+                            <td colspan="3">Summary:</td>
                             <td>{{ $order->calculateFullSum() }}</td>
                         </tr>
                     

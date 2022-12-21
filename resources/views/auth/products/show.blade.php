@@ -31,9 +31,10 @@
     <p class="card-text">Description - <b>{{ $product->description }}</b></p>
   </div>
   <ul class="list-group list-group-flush">
-   <li class="list-group-item">Code - <b>{{ $product->code }}</b></li>
-    <li class="list-group-item">ID - <b>{{ $product->id }}</b></li>
-     <li class="list-group-item">CategoryID - <b>{{ $product->category_id }}</b></li>   
+     <li class="list-group-item">Code - <b>{{ $product->code }}</b></li>
+     <li class="list-group-item">ID - <b>{{ $product->id }}</b></li>
+	 <li class="list-group-item">CategoryID - <b>{{ $product->category_id }}</b></li>
+     <li class="list-group-item">Count - <b>{{ $product->count }}</b></li>	    
 
    
   </ul>

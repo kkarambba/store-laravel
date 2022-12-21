@@ -3,23 +3,20 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Product extends Model
-{
-/*    public function getCatgory(){
-		//$category = Category::find($this->category_id);
-		return Category::where('id', $this->category_id)->first();		
-		
-	}
+class Product extends Model{	
+	use SoftDeletes;
 	
-*/	
-	protected $fillable = ['category_id','code','name','description','image','price','hit','new','recommend'];
+	protected $fillable = ['category_id','code','name','description','image','price','hit','new','recommend','count'];
 	
-	public function category(){
+	public function category()
+	{
 		return $this->belongsTo(Category::class);
 	}
 	
-	public function getPriceForCount(){
+	public function getPriceForCount()
+	{
 		if(!is_null($this->pivot)){
 			return $this->pivot->count * $this->price;
 		}
@@ -27,44 +24,62 @@ class Product extends Model
 				
 	}
 	
-	public function scopeHit($querry){
-				
+	public function scopeByCode($querry, $code)
+	{		
+		return $querry->where('code', $code);		
+	}
+	
+	public function scopeHit($querry)
+	{				
 		return $querry->where('hit', 1);
 				
 	}	
-	public function scopeNew($querry){
-				
+	
+	public function scopeNew($querry)
+	{				
 		return $querry->where('new', 1);
 				
-	}	
-	public function scopeRecommend($querry){
-				
+	}
+		
+	public function scopeRecommend($querry)
+	{				
 		return $querry->where('recommend', 1);
 				
 	}
 	
-	public function setNewAttribute($valute){
+	public function setNewAttribute($valute)
+	{
 		$this->attributes['new'] = $valute === 'on' ? 1 : 0;		
 	}
 
-	public function setHitAttribute($valute){
+	public function setHitAttribute($valute)
+	{
 		$this->attributes['hit'] = $valute === 'on' ? 1 : 0;		
 	}
 	
-	public function setRecommendAttribute($valute){
+	public function setRecommendAttribute($valute)
+	{
 		$this->attributes['recommend'] = $valute === 'on' ? 1 : 0;		
+	}
+	
+	public function isAviable()
+	{
+		return !$this->trashed() && $this->count > 0 ;
 	}	
 	
-	public function isHit(){
+	public function isHit()
+	{
 		return $this->hit === 1;
 		
 	}
 		
-	public function isNew(){
+	public function isNew()
+	{
 		return $this->new === 1;
 	}	
 	
-	public function isRecommend(){
+	public function isRecommend()
+	{
 		return $this->recommend === 1;
 	}
 	

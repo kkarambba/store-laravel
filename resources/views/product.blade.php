@@ -31,13 +31,27 @@
     <p class="card-text">Description - <b>{{ $product->description }}</b></p>
   </div>
   <ul class="list-group list-group-flush">
-   <li class="list-group-item">Code - <b>{{ $product->code }}</b></li>
-    <li class="list-group-item">ID - <b>{{ $product->id }}</b></li>
-     <li class="list-group-item">Category - <b>{{ $category->name }}</b></li>   
+  
+   <li class="list-group-item">Price - <b>{{ $product->price }} USD</b></li>  
+   <li class="list-group-item">Code - <b>{{ $product->code }} </b></li>
+   <li class="list-group-item">ID - <b>{{ $product->id }}</b></li>
+   <li class="list-group-item">Category - <b>{{ $product->category->name }}</b></li>   
 
    
   </ul>
 
 </div>
+
+                <form method="POST" action="{{ route('basketAdd', $product) }}"> 
+                
+                {!! csrf_field() !!}             
+                  @if($product->isAviable()) 
+                  	<button type="submit" class="btn btn-success">Order</button>
+
+                  @else
+                  	<button disabled class="btn btn-danger">Out of Stock</button>                  	
+                  @endif
+
+                </form>
 @endsection
 

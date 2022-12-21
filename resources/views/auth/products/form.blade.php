@@ -50,7 +50,10 @@
     <label for="price">Price</label>
     <input class="form-control" id="price" name="price" value="{{ old('price', isset($product) ? $product->price : NULL) }}"></input>
     </div>
-    
+     <div class="form-group">
+    <label for="count">Count</label>
+    <input class="form-control" id="count" name="count" value="{{ old('count', isset($product) ? $product->count : NULL) }}"></input>
+    </div>   
     <div class="form-group">
     <label for="category_id">Category</label>
     <select name="category_id" id="category_id" class="form-control">

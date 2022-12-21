@@ -27,6 +27,8 @@
       <td>{{ $order->phone}}</td>
       <td>{{ $order->created_at->format('H-i d/m/y')}}</td>
       <td>{{ $order->calculateFullSum()}}</td>
+   
+      
       @if(Auth::user()->is_admin==1)
       	<td><a href="{{ route('orders-show', $order) }}" class="btn btn-success" type="button">Open</a></td>
       @else

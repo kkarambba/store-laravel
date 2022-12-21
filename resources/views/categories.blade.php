@@ -45,12 +45,14 @@
 
 
 <div class="col-sm-6 col-md-12">
-	@foreach($categories as $category)
+	@foreach($categories as $catName)
 	<ul>
-		<li><h4><a href="{{ route('category', $category->code) }}">{{	$category->name }}</a></h4>
-		<p style="color: red;font-size:15pt;">{{ $category->description }}</p></li>
+		<li><h4><a href="{{ route('category', $catName->code) }}">{{	$catName->name }}</a></h4>
+		<p style="color: red;font-size:15pt;">{{ $catName->description }}</p></li>
 	</ul>
 	@endforeach 
+	
+	
 <div class="row">	
 	@foreach($products as $product)
 		

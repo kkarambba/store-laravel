@@ -53,12 +53,6 @@ Route::middleware(['auth'])->group(function(){
 	   });	
 });
 
-
-
-
-
-
-
 Route::get('/', function () {
     return view('welcome');
 })->name('index');
@@ -83,7 +77,6 @@ Route::get(
 	'ContactController@updateMessage'
 	)->name('contact-update');
 
-
 Route::post(
 	'/contact/all/{id}/update',
 	'ContactController@updateMessageSubmit'
@@ -94,20 +87,16 @@ Route::get(
 	'ContactController@deleteMessage'
 	)->name('contact-delete');
 
-Route::post('/basket/add/{id}', 'BasketController@basketAdd')->name('basketAdd');
+Route::post('/basket/add/{product}', 'BasketController@basketAdd')->name('basketAdd');
 
 Route::group([
 	'middleware' => 'basket_not_empty'], function(){
 			Route::get('/basket/', 'BasketController@basket')->name('basket');	
 			Route::get('/order', 'BasketController@basketPlace')->name('order');
-			Route::post('/basket/remove/{id}', 'BasketController@basketRemove')->name('basketRemove');
-			Route::post('/order', 'BasketController@basketСonfirm')->name('basket-confirm');
+			Route::post('/basket/remove/{product}', 'BasketController@basketRemove')->name('basketRemove');
+			Route::post('/order', 'BasketController@basketСonfirm')->name('basket-confirm');		
+		});
 		
-		}); 
-
-
-
-
 Route::get('/categories', 'MainController@categories')->name('categories');
 
 Route::get('/{category}', 'MainController@category')->name('category');

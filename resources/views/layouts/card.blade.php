@@ -28,6 +28,7 @@
  
 
             <div class="card-body" style="font-size:16pt;">
+              <p class="card-text">Name: <b>{{ $product ->name }}</b></p>
               <p class="card-text">Discription: <b>{{ $product ->description }}</b></p>
               <p class="card-text">Price: <b>{{ $product ->price }} USD</b></p> 
               <p class="card-text">Category: <b>{{ $product ->category->name}}</b></p>
@@ -37,8 +38,14 @@
                 <form method="POST" action="{{ route('basketAdd', $product) }}"> 
                 
                 {!! csrf_field() !!}             
-                  <button type="submit" class="btn btn-sm btn-outline-secondary">Order</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">
+                  @if($product->isAviable()) 
+                  	<button type="submit" class="btn btn-success">Order</button>
+
+                  @else
+                  	<button disabled class="btn btn-danger">Out of Stock</button>                  	
+                  @endif
+                  <button type="button" class="btn btn-warning">
+                  
                   	<a href="{{ route('product', [isset($category) ? $category->code : $product->category->code, $product->code]) }}">Details</a>
                   </button>
                 </form>
